@@ -1,0 +1,43 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=true
+separator_block_width=15
+
+[backlight]
+label=☀
+interval=20
+#STEP_SIZE=5
+#USE_SUDO=0
+command=/home/$USER/.config/scripts/backlight
+
+[greetings]
+color=#f5af19
+command=echo "Hello, P!"
+interval=once
+
+[memory]
+command=/home/$USER/.config/scripts/memory
+label=
+interval=30
+
+[battery2]
+command=/home/$USER/.config/scripts/battery2
+markup=pango
+interval=30
+
+[time]
+command=date '+%Y-%m-%d %T'
+interval=5
+
+[arch-update]
+command=/home/$USER/.config/scripts/arch-update
+interval=3600
+markup=pango
+LABEL= 

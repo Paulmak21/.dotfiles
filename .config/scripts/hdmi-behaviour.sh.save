@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Path to your i3 configuration file
+I3_CONFIG_PATH="$HOME/.config/i3/config"
+
+# Define your laptop screen output (e.g., eDP-1)
+LAPTOP_OUTPUT="eDP-1"
+
+# Define your HDMI output (e.g., HMDI-1)
+HDMI_OUTPUT="HDMI-1"
+
+# List of workspace names (adjust as needed)
+WORKSPACES=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
+
+# Function to move workspaces to the laptop screen
+move_workspaces_to_laptop() {
+    for ws in "${WORKSPACES[@]}"; do
+        i3-msg "workspace $ws; move workspace to output $LAPTOP_OUTPUT"
+    done
+}
+
+# Main script logic
+if xrandr | grep -q "HDMI-1 disconnected"; then
+    # HDMI is unplugged, restore workspaces to laptop screen
+    move_workspaces_to_laptop
+    echo "Workspaces moved to $LAPTOP_OUTPUT"
+else
